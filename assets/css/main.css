@@ -1003,19 +1003,6 @@ section,
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
 
-/* .simulate-btn {
-  color: var(--contrast-color);
-  background: var(--accent-color);
-  border: 0;
-  padding: 10px 30px;
-  transition: 0.4s;
-  border-radius: 4px;
-}
-
-.simulate-btn:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 20%);
-} */
-
 
 /*--------------------------------------------------------------
 # Constructions Section
@@ -2868,3 +2855,138 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 60%);
   font-size: 14px;
 }
+
+
+
+
+
+
+/* Container do modal */
+.custom-modal {
+  display: none; /* Oculto por padrão */
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Conteúdo do modal */
+.custom-modal-dialog {
+  background: #fff;
+  width: 90%;
+  max-width: 600px;
+  margin: 5% auto;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Cabeçalho do modal */
+.custom-modal-header {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #ddd;
+}
+
+.modal-each-prod-h5 {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.close-modal {
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Corpo do modal */
+.custom-modal-body {
+  padding: 16px;
+  max-height: 70vh;
+  overflow-y: auto; /* Rolagem se o conteúdo exceder a altura */
+}
+
+/* Cada item de produto */
+.prod-click-me {
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.prod-click-me:hover {
+  background: #f9f9f9;
+}
+
+.prod-click-me-inner {
+  display: flex;
+  width: 100%;
+}
+
+.prod-img img {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  margin-right: 16px;
+}
+
+.prod-title h5 {
+  font-size: 1rem;
+  margin: 0 0 5px;
+}
+
+.prod-title p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Rodapé do modal */
+.custom-modal-footer {
+  padding: 16px;
+  border-top: 1px solid #ddd;
+  text-align: right;
+}
+
+.close-modal-btn {
+  background: #f44336;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.close-modal-btn:hover {
+  background: #d32f2f;
+}
+
+
+
+
+
+
+.simulate-btn {
+  display: inline-block;              /* Garante comportamento de botão */
+  padding: 10px 20px;                 /* Espaçamento interno */
+  border-radius: 4px;                 /* Arredonda cantos */
+  border: 2px solid var(--accent-color);
+  background-color: var(--accent-color);
+  color: var(--contrast-color);       /* Texto branco */
+  font-size: 14px;                    /* Ajuste conforme desejar */
+  cursor: pointer;
+  transition: 0.3s ease-in-out;       /* Animação suave */
+}
+
+.simulate-btn:hover {
+  background-color: var(--contrast-color); /* Fica branco */
+  color: var(--accent-color);              /* Texto amarelo */
+  border-color: var(--accent-color);       /* Mantém borda amarela */
+}
+
