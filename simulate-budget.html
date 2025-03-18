@@ -67,19 +67,66 @@
           </ol>
         </nav>
       </div>
-    </div><!-- End Page Title -->
-
+    </div>
+    <!-- End Page Title -->
     <!-- Starter Section Section -->
-    <section id="starter-section" class="starter-section section">
-
-      <div class="container" data-aos="fade-up">
-        <p>Use this page...</p>
-        <p>as a starter...</p>
-        <p>for your own...</p>
-        <p>custom pages.</p>
+    <section id="hero" class="section">
+      
+      <div class="container text-center" style="margin-top: 60px;">
+        <button id="openModalBtn" class="simulate-btn">+ Add Window</button>
       </div>
 
-    </section><!-- /Starter Section Section -->
+    </section>
+    <!-- /Starter Section Section -->
+
+    <!-- Modal -->
+    <div id="simulateModal" class="custom-modal">
+      <div class="custom-modal-dialog">
+        <div class="custom-modal-header">
+          <h5 class="modal-each-prod-h5">
+            <i class="fas fa-sliders-h"></i> Simulator
+            <br><br>
+            <small>Select</small>
+          </h5>
+          <span class="close-modal">&times;</span>
+        </div>
+        
+        <div class="custom-modal-body">
+          <!-- Exemplo de item (repita para cada produto) -->
+          <div class="prod-click-me" data-prod="potomac_6200_series_window_double_hung">
+            <div class="prod-click-me-inner">
+              <div class="prod-img">
+                <img src="assets/img/windows/potomac_6200_series_window_double_hung.jpg" alt="product_image">
+              </div>
+              <div class="prod-title">
+                <h5 class="mb-0 font-weight-bold">Double Hung</h5>
+                <p>Potomac 6200 Series Window</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Repita blocos similares para cada janela/porta -->
+          <!-- ... -->
+        </div>
+        
+        <div class="custom-modal-footer">
+          <button class="close-modal-btn">Fechar</button>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Estrutura do Modal -->
+  <!-- <div id="windowModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Select Window</h2>
+      <p>Please choose your window option:</p>
+      <button type="button" class="window-option" data-window="option1">Window Option 1</button>
+      <button type="button" class="window-option" data-window="option2">Window Option 2</button>
+    </div>
+  </div> -->
 
   </main>
 
@@ -150,6 +197,8 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/modalWindow.js"></script>
+
 
 </body>
 
