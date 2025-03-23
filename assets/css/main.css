@@ -2676,9 +2676,9 @@ section,
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
-.starter-section {
+/* .starter-section { */
   /* Add your styles here */
-}
+/* } */
 
 /*--------------------------------------------------------------
 # Widgets
@@ -2917,11 +2917,12 @@ section,
   margin-bottom: 10px;
   display: flex;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, border-color 0.3s;
 }
 
 .prod-click-me:hover {
   background: #f9f9f9;
+  border-color: var(--accent-color);
 }
 
 .prod-click-me-inner {
@@ -2990,3 +2991,128 @@ section,
   border-color: var(--accent-color);       /* Mantém borda amarela */
 }
 
+
+
+.selected-items {
+  border: 1px solid #ddd;
+  min-height: 50px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+/* Cartão de cada item selecionado */
+.selected-item-card {
+  position: relative;
+  border: 2px solid #f5f5f5;
+  border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  gap: 20px; /* Espaço horizontal entre colunas */
+  width: 70%;
+  margin: 0 auto 15px;
+  background-color: #f5f5f5;
+}
+
+/* Botão para remover o item */
+.remove-item-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 8px 12px;
+}
+.remove-item-btn:hover {
+  background: #c0392b;
+}
+
+/* Coluna Esquerda (título + imagem) */
+.item-left-col {
+  flex: 1;
+  max-width: 180px;
+  text-align: center;
+}
+.item-left-col h4 {
+  margin-bottom: 8px;
+}
+.item-left-col img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Coluna Direita (campos) */
+.item-right-col {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Dimensões */
+.dimensions label {
+  display: block;
+  font-weight: 600;
+  margin: 4px 0 2px;
+}
+.dimensions input {
+  width: 120px;
+  margin-bottom: 8px;
+}
+
+/* Cor */
+.color-options label {
+  font-weight: 600;
+}
+.color-radios label {
+  margin-right: 10px;
+}
+
+/* Blinds */
+.blinds-details {
+  margin-top: 8px;
+  padding-left: 10px;
+  border-left: 2px solid #ccc;
+}
+.blinds-details label {
+  font-weight: normal;
+  margin-right: 8px;
+}
+/* Exemplo de estilo para o container dos itens selecionados */
+/* .selected-items {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  min-height: 50px;
+} */
+
+/* Exemplo de "card" que iremos criar via JS */
+/* .selected-item-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  background: #fafafa;
+} */
+
+/* .selected-item-card h4 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.selected-item-card .remove-btn {
+  background: #e74c3c;
+  color: #fff;
+  border: 0;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 8px;
+} */
+
+/* .selected-item-card .remove-btn:hover {
+  background: #c0392b;
+} */
