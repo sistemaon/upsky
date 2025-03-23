@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Service Details - UpSky</title>
+  <title>Simulate Budget - UpSky</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -30,7 +30,7 @@
 
 </head>
 
-<body class="service-details-page">
+<body class="simulate-budget-page">
 
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
@@ -38,7 +38,7 @@
       <a href="index.html" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">UpConstruction</h1> <span>.</span>
+        <h1 class="sitename">UpSky</h1> <span>.</span>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -59,60 +59,74 @@
     <!-- Page Title -->
     <div class="page-title dark-background" style="background-image: url(assets/img/page-title-bg.jpg);">
       <div class="container position-relative">
-        <h1>Service Details</h1>
+        <h1>Simulate Budget</h1>
         <nav class="breadcrumbs">
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li class="current">Service Details</li>
+            <li class="current">Simulate Budget</li>
           </ol>
         </nav>
       </div>
-    </div><!-- End Page Title -->
-
-    <!-- Service Details Section -->
-    <section id="service-details" class="service-details section">
-
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="services-list">
-              <a href="#" class="active">Web Design</a>
-              <a href="#">Software Development</a>
-              <a href="#">Product Management</a>
-              <a href="#">Graphic Design</a>
-              <a href="#">Marketing</a>
-            </div>
-
-            <h4>Enim qui eos rerum in delectus</h4>
-            <p>Nam voluptatem quasi numquam quas fugiat ex temporibus quo est. Quia aut quam quod facere ut non occaecati ut aut. Nesciunt mollitia illum tempore corrupti sed eum reiciendis. Maxime modi rerum.</p>
-          </div>
-
-          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
-            <img src="assets/img/services.jpg" alt="" class="img-fluid services-img">
-            <h3>Temporibus et in vero dicta aut eius lidero plastis trand lined voluptas dolorem ut voluptas</h3>
-            <p>
-              Blanditiis voluptate odit ex error ea sed officiis deserunt. Cupiditate non consequatur et doloremque consequuntur. Accusantium labore reprehenderit error temporibus saepe perferendis fuga doloribus vero. Qui omnis quo sit. Dolorem architecto eum et quos deleniti officia qui.
-            </p>
-            <ul>
-              <li><i class="bi bi-check-circle"></i> <span>Aut eum totam accusantium voluptatem.</span></li>
-              <li><i class="bi bi-check-circle"></i> <span>Assumenda et porro nisi nihil nesciunt voluptatibus.</span></li>
-              <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea</span></li>
-            </ul>
-            <p>
-              Est reprehenderit voluptatem necessitatibus asperiores neque sed ea illo. Deleniti quam sequi optio iste veniam repellat odit. Aut pariatur itaque nesciunt fuga.
-            </p>
-            <p>
-              Sunt rem odit accusantium omnis perspiciatis officia. Laboriosam aut consequuntur recusandae mollitia doloremque est architecto cupiditate ullam. Quia est ut occaecati fuga. Distinctio ex repellendus eveniet velit sint quia sapiente cumque. Et ipsa perferendis ut nihil. Laboriosam vel voluptates tenetur nostrum. Eaque iusto cupiditate et totam et quia dolorum in. Sunt molestiae ipsum at consequatur vero. Architecto ut pariatur autem ad non cumque nesciunt qui maxime. Sunt eum quia impedit dolore alias explicabo ea.
-            </p>
-          </div>
-
-        </div>
-
+    </div>
+    <!-- End Page Title -->
+    <!-- Starter Section Section -->
+    <section id="hero" class="section">
+      
+      <div class="container text-center" style="margin-top: 60px;">
+        <button id="openModalBtn" class="simulate-btn">+ Add Window</button>
       </div>
 
-    </section><!-- /Service Details Section -->
+    </section>
+    <!-- /Starter Section Section -->
+
+    <!-- Modal -->
+    <div id="simulateModal" class="custom-modal">
+      <div class="custom-modal-dialog">
+        <div class="custom-modal-header">
+          <h5 class="modal-each-prod-h5">
+            <i class="fas fa-sliders-h"></i> Simulator
+            <br><br>
+            <small>Select</small>
+          </h5>
+          <span class="close-modal">&times;</span>
+        </div>
+        
+        <div class="custom-modal-body">
+          <!-- Exemplo de item (repita para cada produto) -->
+          <div class="prod-click-me" data-prod="potomac_6200_series_window_double_hung">
+            <div class="prod-click-me-inner">
+              <div class="prod-img">
+                <img src="assets/img/windows/potomac_6200_series_window_double_hung.jpg" alt="product_image">
+              </div>
+              <div class="prod-title">
+                <h5 class="mb-0 font-weight-bold">Double Hung</h5>
+                <p>Potomac 6200 Series Window</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Repita blocos similares para cada janela/porta -->
+          <!-- ... -->
+        </div>
+        
+        <div class="custom-modal-footer">
+          <button class="close-modal-btn">Fechar</button>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Estrutura do Modal -->
+  <!-- <div id="windowModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Select Window</h2>
+      <p>Please choose your window option:</p>
+      <button type="button" class="window-option" data-window="option1">Window Option 1</button>
+      <button type="button" class="window-option" data-window="option2">Window Option 2</button>
+    </div>
+  </div> -->
 
   </main>
 
@@ -122,7 +136,7 @@
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
           <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">UpConstruction</span>
+            <span class="sitename">UpSky</span>
           </a>
           <div class="footer-contact pt-3">
             <p>A108 Adam Street</p>
@@ -159,12 +173,11 @@
             <li><a href="service-details.html">Graphic Design</a></li>
           </ul>
         </div>
-
       </div>
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">UpConstruction</strong> <span>All Rights Reserved</span></p>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">UpSky</strong> <span>All Rights Reserved</span></p>
     </div>
 
   </footer>
@@ -184,6 +197,8 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/modalWindow.js"></script>
+
 
 </body>
 
