@@ -94,7 +94,7 @@
 
 
           <div class="col-lg-5" data-aos="zoom-out" data-aos-delay="200">
-            <form id="quoteForm" action="forms/quote.php" method="post" class="php-email-form">
+            <form id="quoteForm" action="forms/quote.php" method="post" class="php-email-form" enctype="multipart/form-data">
               <h3>Get Quote</h3>
               <p>Fill out the form below to receive a free, no-obligation quote for your window installation project. We'll respond as soon as possible.</p>
               <div class="row gy-3">
@@ -113,6 +113,12 @@
 
                 <div class="col-12">
                   <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                </div>
+
+                <div class="col-12">
+                  <label for="photos" class="form-label">Upload Photos of Your Windows (Optional)</label>
+                  <input type="file" class="form-control" name="photos[]" id="photos" accept="image/*" multiple>
+                  <!-- <small class="text-muted">You can select multiple images</small> -->
                 </div>
 
                 <div class="col-12 text-center">
@@ -213,7 +219,7 @@
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <!-- <script src="assets/vendor/php-email-form/validate.js"></script> -->
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
@@ -223,6 +229,51 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+  
+  <script>
+    const quoteForm = document.getElementById('quoteForm');
+    
+    quoteForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const loading = quoteForm.querySelector('.loading');
+      const errorMsg = quoteForm.querySelector('.error-message');
+      const sentMsg = quoteForm.querySelector('.sent-message');
+      const submitBtn = quoteForm.querySelector('button[type="submit"]');
+      
+      loading.classList.add('d-block');
+      errorMsg.classList.remove('d-block');
+      sentMsg.classList.remove('d-block');
+      
+      const formData = new FormData(quoteForm);
+      
+      try {
+        const response = await fetch('forms/quote.php', {
+          method: 'POST',
+          body: formData
+        });
+        
+        const result = await response.text();
+        loading.classList.remove('d-block');
+        
+        if (result.trim() === 'OK') {
+          sentMsg.classList.add('d-block');
+          quoteForm.reset();
+          setTimeout(() => {
+            sentMsg.classList.remove('d-block');
+            submitBtn.textContent = 'Get a new quote';
+          }, 5000);
+        } else {
+          errorMsg.textContent = result;
+          errorMsg.classList.add('d-block');
+        }
+      } catch (error) {
+        loading.classList.remove('d-block');
+        errorMsg.textContent = 'Error sending request';
+        errorMsg.classList.add('d-block');
+      }
+    });
+  </script>
 
 </body>
 

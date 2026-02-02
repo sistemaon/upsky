@@ -41,6 +41,10 @@ document.addEventListener('DOMContentLoaded', function () {
           sentElem.style.display = 'block';
           // Reseta o formulário
           form.reset();
+          // Remove a mensagem após 5 segundos
+          setTimeout(() => {
+            sentElem.style.display = 'none';
+          }, 5000);          
         } else {
           // Exibe a mensagem de erro retornada pelo servidor
           errorElem.textContent = result.msg || 'Erro ao enviar a solicitação.';

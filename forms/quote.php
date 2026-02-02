@@ -28,6 +28,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Body .= "Phone: " . $_POST['phone'] . "\n\n";
         $mail->Body .= "Message:\n" . $_POST['message'];
 
+        // Handle file attachments
+        if (isset($_FILES['photos']) && is_array($_FILES['photos']['name'])) {
+            $fileCount = count($_FILES['photos']['name']);
+            for ($i = 0; $i < $fileCount; $i++) {
+                if (isset($_FILES['photos']['tmp_name'][$i]) && 
+                    $_FILES['photos']['error'][$i] === UPLOAD_ERR_OK && 
+                    !empty($_FILES['photos']['name'][$i])) {
+                    $mail->addAttachment(
+                        $_FILES['photos']['tmp_name'][$i], 
+                        $_FILES['photos']['name'][$i]
+                    );
+                }
+            }
+        }
+
         $mail->send();
         echo 'OK';
     } catch (Exception $e) {
