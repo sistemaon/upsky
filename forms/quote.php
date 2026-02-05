@@ -29,22 +29,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Body .= "Message:\n" . $_POST['message'];
 
         // Handle file attachments
+        $invalidFiles = [];
         if (isset($_FILES['photos']) && is_array($_FILES['photos']['name'])) {
             $fileCount = count($_FILES['photos']['name']);
+            $allowedExtensions = ['jpg', 'jpeg', 'png'];
+            $allowedMimeTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+            
             for ($i = 0; $i < $fileCount; $i++) {
-                if (isset($_FILES['photos']['tmp_name'][$i]) && 
-                    $_FILES['photos']['error'][$i] === UPLOAD_ERR_OK && 
-                    !empty($_FILES['photos']['name'][$i])) {
-                    $mail->addAttachment(
-                        $_FILES['photos']['tmp_name'][$i], 
-                        $_FILES['photos']['name'][$i]
-                    );
+                if (!empty($_FILES['photos']['name'][$i])) {
+                    if ($_FILES['photos']['error'][$i] === UPLOAD_ERR_OK) {
+                        $fileExtension = strtolower(pathinfo($_FILES['photos']['name'][$i], PATHINFO_EXTENSION));
+                        $fileMimeType = mime_content_type($_FILES['photos']['tmp_name'][$i]);
+                        
+                        // Validate both extension and MIME type
+                        if (!in_array($fileExtension, $allowedExtensions) || !in_array($fileMimeType, $allowedMimeTypes)) {
+                            $invalidFiles[] = $_FILES['photos']['name'][$i];
+                            continue; // Skip this file
+                        }
+                        
+                        $mail->addAttachment(
+                            $_FILES['photos']['tmp_name'][$i], 
+                            $_FILES['photos']['name'][$i]
+                        );
+                    } else {
+                        $invalidFiles[] = $_FILES['photos']['name'][$i];
+                    }
                 }
             }
         }
 
         $mail->send();
-        echo 'OK';
+        
+        if (!empty($invalidFiles)) {
+            echo 'OK_WITH_WARNINGS: Your quote request has been sent. However, the following files were not valid images and were removed: ' . implode(', ', $invalidFiles);
+        } else {
+            echo 'OK';
+        }
     } catch (Exception $e) {
         echo "Error: {$mail->ErrorInfo}";
     }

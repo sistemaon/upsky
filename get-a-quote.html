@@ -117,8 +117,7 @@
 
                 <div class="col-12">
                   <label for="photos" class="form-label">Upload Photos of Your Windows (Optional)</label>
-                  <input type="file" class="form-control" name="photos[]" id="photos" accept="image/*" multiple>
-                  <!-- <small class="text-muted">You can select multiple images</small> -->
+                  <input type="file" class="form-control" name="photos[]" id="photos" accept="image/jpeg,image/jpg,image/png" multiple>
                 </div>
 
                 <div class="col-12 text-center">
@@ -229,38 +228,44 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-  
+
   <script>
     const quoteForm = document.getElementById('quoteForm');
-    
+
     quoteForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      
+
       const loading = quoteForm.querySelector('.loading');
       const errorMsg = quoteForm.querySelector('.error-message');
       const sentMsg = quoteForm.querySelector('.sent-message');
       const submitBtn = quoteForm.querySelector('button[type="submit"]');
-      
+
       loading.classList.add('d-block');
       errorMsg.classList.remove('d-block');
       sentMsg.classList.remove('d-block');
-      
+
       const formData = new FormData(quoteForm);
-      
+
       try {
         const response = await fetch('forms/quote.php', {
           method: 'POST',
           body: formData
         });
-        
+
         const result = await response.text();
         loading.classList.remove('d-block');
         
-        if (result.trim() === 'OK') {
+        if (result.trim() === 'OK' || result.startsWith('OK_WITH_WARNINGS:')) {
           sentMsg.classList.add('d-block');
+          if (result.startsWith('OK_WITH_WARNINGS:')) {
+            sentMsg.textContent = result.replace('OK_WITH_WARNINGS: ', '');
+          } else {
+            sentMsg.textContent = 'Your quote request has been sent successfully. Thank you!';
+          }
           quoteForm.reset();
           setTimeout(() => {
             sentMsg.classList.remove('d-block');
+            sentMsg.textContent = 'Your quote request has been sent successfully. Thank you!';
             submitBtn.textContent = 'Get a new quote';
           }, 5000);
         } else {
