@@ -1,33 +1,47 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('quoteForm');
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('quoteForm');
     if (!form) return;
   
     // Defina a URL do endpoint (sua rota no Express)
-    const endpoint = 'http://localhost:3000/contact/send-email';
+    // const endpoint = 'http://localhost:3000/emailer/send';
+    const endpoint = 'https://upsky-emailer.onrender.com/emailer/send';
   
-    form.addEventListener('submit', async function (event) {
+    form.addEventListener('submit', async (event) => {
       event.preventDefault(); // Impede o comportamento padrão do form
   
       // Captura elementos de feedback
       const loadingElem = form.querySelector('.loading');
       const errorElem = form.querySelector('.error-message');
       const sentElem = form.querySelector('.sent-message');
-  
+      const submitButton = form.querySelector('button[type="submit"]');
+
+      // Disable button and show loading
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.style.display = 'none'; // Hide button
+      }
+
       // Exibe 'Loading' e oculta erros/sucessos anteriores
       loadingElem.style.display = 'block';
       errorElem.style.display = 'none';
       sentElem.style.display = 'none';
   
       // Captura dados do formulário
+      console.log('form ::; ', form);
       const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
+
+      // Log FormData contents properly
+      console.log('formData entries:');
+      for (let [key, value] of formData.entries()) {
+        console.log(key, value);
+      }
   
       try {
         // Faz requisição POST para o endpoint
         const response = await fetch(endpoint, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
+          body: formData, // Send FormData directly, not JSON
         });
   
         // Lê a resposta como JSON
@@ -39,23 +53,38 @@ document.addEventListener('DOMContentLoaded', function () {
         if (response.ok) {
           // Sucesso: exibe mensagem de sucesso
           sentElem.style.display = 'block';
+          // Update button text
+          if (submitButton) {
+            submitButton.textContent = 'Get a new quote';
+            // Re-enable button
+            submitButton.disabled = false;
+            submitButton.disabled = false;
+            submitButton.style.display = ''; // Show button
+          }
           // Reseta o formulário
           form.reset();
           // Remove a mensagem após 5 segundos
           setTimeout(() => {
             sentElem.style.display = 'none';
-          }, 5000);          
+          }, 6000);
         } else {
           // Exibe a mensagem de erro retornada pelo servidor
-          errorElem.textContent = result.msg || 'Erro ao enviar a solicitação.';
+          errorElem.textContent = result.msg || 'Error sending request.';
           errorElem.style.display = 'block';
+          if (submitButton) {
+            submitButton.disabled = false; // Re-enable on error
+            submitButton.style.display = ''; // Show button on error
+          }
         }
       } catch (error) {
         // Erro de rede ou outro problema
         loadingElem.style.display = 'none';
-        errorElem.textContent = 'Erro na comunicação com o servidor.';
+        errorElem.textContent = 'Error server communication.';
         errorElem.style.display = 'block';
+        if (submitButton) {
+          submitButton.disabled = false; // Re-enable on error
+          submitButton.style.display = ''; // Show button on error
+        }
       }
-    });
   });
-  
+});
