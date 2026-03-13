@@ -28,15 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
       sentElem.style.display = 'none';
   
       // Captura dados do formulário
-      console.log('form ::; ', form);
       const formData = new FormData(form);
 
-      // Log FormData contents properly
-      console.log('formData entries:');
-      for (let [key, value] of formData.entries()) {
-        console.log(key, value);
-      }
-  
       try {
         // Faz requisição POST para o endpoint
         const response = await fetch(endpoint, {
