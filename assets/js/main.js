@@ -8,8 +8,21 @@
   function toggleScrolled() {
     const selectBody = document.querySelector('body');
     const selectHeader = document.querySelector('#header');
+    const logoImg = document.querySelector('.logo img');
+
     if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
-    window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
+
+    if (window.scrollY > 100) {
+      selectBody.classList.add('scrolled');
+      if (logoImg) {
+        logoImg.src = 'assets/img/logo-dark.png';
+      }
+    } else {
+      selectBody.classList.remove('scrolled');
+      if (logoImg) {
+        logoImg.src = 'assets/img/logo.png';
+      }
+    }
   }
 
   document.addEventListener('scroll', toggleScrolled);
